@@ -56,7 +56,7 @@ AFRAME.registerComponent('info-panel', {
 
         var rot = mainCamera.object3D.quaternion.clone();
 
-        const initialPlanePosition = new THREE.Vector3(0, 0, -5);
+        const initialPlanePosition = new THREE.Vector3(0, 0, -4);
         initialPlanePosition.applyQuaternion(rot);
 
 
