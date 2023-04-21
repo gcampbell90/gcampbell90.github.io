@@ -6,19 +6,113 @@
     <meta charset="utf-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="js\info-panel.js"></script>
     <title>WebAR-Example</title>
 
 </head>
-<body style='margin : 0px; overflow: hidden;'>
-    <a-scene embedded arjs='sourceType: webcam;'>
-        <a-box position='0 0.5 0' material='opacity: .7;' color="red"></a-box>
-        <a-marker-camera preset='hiro'></a-marker-camera>
+
+<body>
+
+    <a-scene>
+        <!--Camera with customized cursor-->
+        <a-camera id="mainCamera">
+            <a-cursor id="cursor"
+                      animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
+                      animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+                      animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
+        </a-camera>
+
+        <a-assets>
+            <!--Sky-->
+            <img id="sky" src="img\belfast360.jpg" crossorigin="anonymous">
+
+            <img id="cranes" src="img\s&g.png" crossorigin="anonymous" />
+            <img id="cavehill" src="img\Cave-Hill.jpg" crossorigin="anonymous" />
+            <img id="cityhall" src="img\cityhall.png" crossorigin="anonymous" />
+
+            <!--Test Video-->
+            <video id="video" src="sample.mp4" crossorigin="anonymous"></video>
+
+            <!--Models-->
+
+            <!--Mixins for UI building-->
+            <a-mixin id="frame"
+                     geometry="primitive: plane; width: 0.6; height: 0.8"
+                     material="color: black; shader: flat"
+                     animation__scale="property: scale; to: 1.2 1.2 1.2; dur: 200; startEvents: mouseenter"
+                     animation__scale_reverse="property: scale; to: 1 1 1; dur: 200; startEvents: mouseleave">
+            </a-mixin>
+
+            <a-mixin id="poiImage"
+                     geometry="primitive: plane; width: 1.5; height: 0.8"
+                     material="src: #city; shader: flat; transparent: true"
+                     position="1 .4 0.1">
+            </a-mixin>
+        </a-assets>
+
+        <!--Scene setup-->
+        <a-sky src="#sky" rotation="0 -90 0"></a-sky>
+
+        <a-sphere id="cityhallButton" class="poiInteractable" color="blue" scale="0.2 0.2 0.2" position="-.1 1.5 -5"></a-sphere>
+        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="blue"position="-.1 .8 -5"></a-entity>
+        <a-sphere id="cranesButton" class="poiInteractable" color="red" scale="0.2 0.2 0.2" position="-5 3 2"></a-sphere>
+        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="red" position="-5 2.3 2"></a-entity>
+        <a-sphere id="cavehillButton" class="poiInteractable" color="green" scale="0.2 0.2 0.2" position="1 3 5"></a-sphere>
+        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="green" position="1 2.3 5"></a-entity>
+
+
+        <a-entity info-panel
+                  id="info-panel"
+                  visible="false"
+                  position="0 0 -5"
+                  look-at="[camera]"
+                  geometry="primitive: plane; width: 4; height: 2">
+
+            <a-entity id="poiTitle"
+                      position=".9 .9 0"
+                      text="shader: msdf; anchor: left; width: 1.5; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white;
+                      value: POI Title">
+            </a-entity>
+
+            <a-entity id="poiDescription"
+                      position="-1.5 0.5 0"
+                      text="shader: msdf; anchor: left; width: 1.5; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white;
+                    value: Description of POI">
+            </a-entity>
+
+            <a-entity id="url"
+                      position="-2 1 0"
+                      geometry="primitive: sphere; width: 0.01; radius: 0.1"
+                      material="shader: flat; color: red">
+                <a-entity id="urlText"
+                          position="1 -0.5 0"
+                          text="shader: msdf; anchor: right; width: 1.5; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white;
+                    value: URL Here for video">
+                </a-entity>
+            </a-entity>
+
+            <a-entity id="poiCHImage" mixin="poiImage" material="src: #cityhall" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+            <a-entity id="poiCranesImage" mixin="poiImage" material="src: #cranes" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+            <a-entity id="poiCaveHillImage" mixin="poiImage" material="src: #cavehill" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+
+            <a-entity position="-.75 -.5 .2">
+                <a-box id="exploreBtn" width="1.5" height="0.15" depth="0.05" color="#333">
+                    <a-text value="Explore Area" color="#FFF" align="center" position="0 .4 0"></a-text>
+                </a-box>
+            </a-entity>
+
+            <a-entity id="vidContainer" visible="true" position="1 -0.4 0.5">
+                <a-video id="vid" src="#video" width="1.5" height=".75"></a-video>
+            </a-entity>
+        </a-entity>
+
+        <!--<a-entity gltf-model="#cityModel" position="0 0 -50"></a-entity>-->
+        <!--<a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl"></a-entity>-->
     </a-scene>
+
 </body>
 </html>
 <script>
-
+ 
 </script>
