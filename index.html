@@ -19,7 +19,7 @@
         <a-camera id="mainCamera">
             <a-cursor id="cursor"
                       animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
-                      animation__clickreset="property: scale; to: 0.1 0.1 0.1; dur: 1; startEvents: animationcomplete__click"
+                      animation__clickreset="property: scale; to: 1 1 1; dur: 1; startEvents: animationcomplete__click"
                       animation__fusing="property: scale; from: 1 1 1; to: 0.1 0.1 0.1; easing: easeInCubic; dur: 150; startEvents: fusing"></a-cursor>
         </a-camera>
 
@@ -32,10 +32,9 @@
             <img id="cityhall" src="img\cityhall.png" crossorigin="anonymous" />
 
             <!--Test Video-->
-            <video id="video" src="sample.mp4" crossorigin="anonymous"></video>
+            <video id="video"  crossorigin="anonymous"></video>
 
             <!--Models-->
-
             <!--Mixins for UI building-->
             <a-mixin id="frame"
                      geometry="primitive: plane; width: 0.6; height: 0.8"
@@ -55,7 +54,7 @@
         <a-sky src="#sky" rotation="0 -90 0"></a-sky>
 
         <a-sphere id="cityhallButton" class="poiInteractable" color="blue" scale="0.2 0.2 0.2" position="-.1 1.5 -5"></a-sphere>
-        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="blue"position="-.1 .8 -5"></a-entity>
+        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="blue" position="-.1 .8 -5"></a-entity>
         <a-sphere id="cranesButton" class="poiInteractable" color="red" scale="0.2 0.2 0.2" position="-5 3 2"></a-sphere>
         <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="red" position="-5 2.3 2"></a-entity>
         <a-sphere id="cavehillButton" class="poiInteractable" color="green" scale="0.2 0.2 0.2" position="1 3 5"></a-sphere>
@@ -67,7 +66,8 @@
                   visible="false"
                   position="0 0 -5"
                   look-at="[camera]"
-                  geometry="primitive: plane; width: 4; height: 2">
+                  geometry="primitive: plane; width: 4.5; height: 2"
+                  material="shader: flat; color: blue">
 
             <a-entity id="poiTitle"
                       position=".9 .9 0"
@@ -82,13 +82,15 @@
             </a-entity>
 
             <a-entity id="url"
-                      position="-2 1 0"
+                      position="-1.9 1 0"
                       geometry="primitive: sphere; width: 0.01; radius: 0.1"
                       material="shader: flat; color: red">
+                <a-text value="Play/Pause Video" color="#FFF" align="center" position="0 -.25 0" width="1.3"></a-text>
+
                 <a-entity id="urlText"
-                          position="1 -0.5 0"
-                          text="shader: msdf; anchor: right; width: 1.5; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white;
-                    value: URL Here for video">
+                          <!--position="-1.9 -0.2 0"-->
+                          text="shader: msdf; anchor: right; width: 1.3; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white;
+                    value: Press to Play/Video">
                 </a-entity>
             </a-entity>
 
@@ -96,9 +98,9 @@
             <a-entity id="poiCranesImage" mixin="poiImage" material="src: #cranes" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
             <a-entity id="poiCaveHillImage" mixin="poiImage" material="src: #cavehill" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
 
-            <a-entity position="-.75 -.5 .2">
-                <a-box id="exploreBtn" width="1.5" height="0.15" depth="0.05" color="#333">
-                    <a-text value="Explore Area" color="#FFF" align="center" position="0 .4 0"></a-text>
+            <a-entity position="-.75 -.4 .2">
+                <a-box id="exploreBtn" width="1.2" height="0.15" depth="0.05" color="green">
+                    <a-text value="Click Button Below to Explore Area" color="#FFF" align="center" position="0 .25 0" width="2"></a-text>
                 </a-box>
             </a-entity>
 
@@ -114,5 +116,5 @@
 </body>
 </html>
 <script>
- 
+
 </script>
