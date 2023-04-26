@@ -8,13 +8,23 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
     <script src="js\info-panel.js"></script>
-    <title>WebAR-Example</title>
+    <script src="js\control.js"></script>
+    <script src="js\poi.js"></script>
+    <script>
+        if (navigator.geolocation) {
+            console.log(" Geolocation is supported")
+        } else {
+            console.log(" Geolocation is not supported")
+        }
+    </script>
 
+    <title>WebAR-Example</title>
 </head>
 
 <body>
 
-    <a-scene>
+    <a-scene vr-mode-ui="enabled: false">
+
         <!--Camera with customized cursor-->
         <a-camera id="mainCamera">
             <a-cursor id="cursor"
@@ -35,9 +45,13 @@
             <video id="video" crossorigin="anonymous"></video>
 
             <!--Models-->
-            <a-asset-item id="city" src="models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="cityHall" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="caveHill" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="cranes" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="titanicBuilding" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="belfastCastle" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
 
-            <!--Mixins for UI building-->
+            <!--Mixins for UI-->
             <a-mixin id="frame"
                      geometry="primitive: plane; width: 0.6; height: 0.8"
                      material="color: black; shader: flat"
@@ -55,10 +69,17 @@
         <!--Scene setup-->
         <a-sky src="#sky" rotation="0 -90 0"></a-sky>
 
+        <!--Light-->
+        <!--<a-light type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget" intensity="10">
+        <a-entity id="directionaltarget" position="0 0 -1"></a-entity>
+    </a-light>-->
+        <!--Points of Interest Interactables-->
         <a-sphere id="cityhallButton" class="poiInteractable" color="blue" scale="0.2 0.2 0.2" position="-.1 1.5 -5.2"></a-sphere>
         <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="blue" position="-.1 .8 -5.2"></a-entity>
+
         <a-sphere id="cranesButton" class="poiInteractable" color="red" scale="0.2 0.2 0.2" position="-5 3 2"></a-sphere>
         <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="red" position="-5 2.3 2"></a-entity>
+
         <a-sphere id="cavehillButton" class="poiInteractable" color="green" scale="0.2 0.2 0.2" position="1 3 5"></a-sphere>
         <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="green" position="1 2.3 5"></a-entity>
 
@@ -110,12 +131,41 @@
             </a-entity>
         </a-entity>
 
-        <a-entity gltf-model="#city" position="0 0 -5"></a-entity>
-        <!--<a-entity obj-model="obj: #tree-obj; mtl: #tree-mtl"></a-entity>-->
+        <!--<a-entity id="sceneModel" gltf-model="#titanicBuilding" rotation="0 90 0" scale="0.05 0.05 0.05"></a-entity>-->
+        
+        <a-entity gps-entity-place="latitude: 54.60836082389292; longitude: -5.91025433885457;">
+            <a-box color="red" position="0 0 0"></a-box>
+        </a-entity>
+
     </a-scene>
 
 </body>
 </html>
 <script>
+    var myPosition = { x: 0, y: 1, z: -3 };
 
+    // Create an entity and set its position to the stored variable
+    /*        var myEntity = document.createElement("a-entity");*/
+
+    //var myEntity = document.querySelector("#sceneModel");
+    //myEntity.setAttribute("position", myPosition);
+
+    pois.forEach(function (poi) {
+        var poiEntity = document.createElement("a-entity");
+        poiEntity.setAttribute("id", poi.name);
+        poiEntity.setAttribute("look-at", "#mainCamera");
+        poiEntity.setAttribute("position", poi.position);
+        poiEntity.setAttribute("text", {
+            value: poi.name,
+            align: "center",
+            width: "6",
+            color: "black"
+        });
+        poiEntity.addEventListener("click", function () {
+            alert(poi.description);
+        });
+        console.log("Creating poi", poi.name);
+        var scene = document.querySelector("a-scene");
+        scene.appendChild(poiEntity);
+    });
 </script>
