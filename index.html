@@ -10,7 +10,10 @@
     <script src="js\info-panel.js"></script>
     <script src="js\control.js"></script>
     <script src="js\poi.js"></script>
+    <script>
+      
 
+    </script>
 
     <title>WebAR-Example</title>
 </head>
@@ -127,7 +130,7 @@
 
         <!--<a-entity id="sceneModel" gltf-model="#titanicBuilding" rotation="0 90 0" scale="0.05 0.05 0.05"></a-entity>-->
 
-        <a-entity id="poiBox" gps-entity-place="latititude: 54.61; longitude: -5.95;">
+        <a-entity id="poiBox">
             <a-box color="red" scale="0.1 0.1 0.1"></a-box>
         </a-entity>
 
@@ -136,17 +139,18 @@
 </body>
 </html>
 
-
 <script>
     var myPosition = { x: 0, y: 1, z: -3 };
-
+    
     // Create an entity and set its position to the stored variable
     /*        var myEntity = document.createElement("a-entity");*/
 
     //var myEntity = document.querySelector("#sceneModel");
     //myEntity.setAttribute("position", myPosition);
-    const scene = document.querySelector("a-scene");
-    console.log(scene);
+    var scene = document.querySelector("a-scene");
+    //console.log(scene);
+    var poiBox = document.querySelector('#poiBox');
+
 
     if (navigator.geolocation) {
         console.log("Geolocation is supported")
@@ -157,14 +161,24 @@
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
                 // Do something with the latitude and longitude
-                let gps = document.createAttribute('gps-entity-place');
-                gps.value = `latitude: ${position.coords.latitude - 0.1}; longitude: ${position.coords.longitude + 0.1}`;
+                //let gps = document.createAttribute('gps-entity-place');
+                //var gps= `latitude: ${position.coords.latitude - 0.1}; longitude: ${position.coords.longitude + 0.1}`;
+                var gps = `latitude: ${54.580}; longitude: ${-6.025}`;
 
                 let scene = document.querySelector("a-scene");
 
-                scene.setAttributeNode(gps);
-                console.log("Location: ", gps.value);
-                console.log("Scene: ", scene.getAttribute('gps-entity-place'));
+                //scene.setAttributeNode(gps);
+
+
+                //poiBox.setAttributeNode(gps);
+                //poiBox.setAttribute('gps-entity-place', gps);
+                poiBox.setAttribute('gps-entity-place', gps);
+
+                console.log("Location: ", gps);
+                var attrib = poiBox.getAttribute('gps-entity-place');
+                console.log(attrib);
+
+                //console.log("poiBox: ", poiBox.getAttribute('gps-entity-place'));
             },
             function (error) {
                 // Error: the user has denied access to their location
@@ -174,6 +188,8 @@
     } else {
         console.log(" Geolocation is not supported")
     }
+
+
 
 
     pois.forEach(function (poi) {
