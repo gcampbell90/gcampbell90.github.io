@@ -10,27 +10,7 @@
     <script src="js\info-panel.js"></script>
     <script src="js\control.js"></script>
     <script src="js\poi.js"></script>
-    <script>
-        if (navigator.geolocation) {
-            console.log(" Geolocation is supported")
 
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    // Success: the user has allowed access to their location
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    // Do something with the latitude and longitude
-                    console.log(latitude, " ", longitude);
-                },
-                function (error) {
-                    // Error: the user has denied access to their location
-                    console.error(error);
-                }
-            );
-        } else {
-            console.log(" Geolocation is not supported")
-        }
-    </script>
 
     <title>WebAR-Example</title>
 </head>
@@ -41,7 +21,7 @@
     <a-scene>
         <!--vr-mode-ui="enabled: false"-->
         <!--Camera with customized cursor-->
-        <a-camera id="mainCamera">
+        <a-camera id="mainCamera" gps-camera rotation-reader>
             <a-cursor id="cursor"
                       animation__click="property: scale; from: 0.1 0.1 0.1; to: 1 1 1; easing: easeInCubic; dur: 150; startEvents: click"
                       animation__clickreset="property: scale; to: 1 1 1; dur: 1; startEvents: animationcomplete__click"
@@ -60,12 +40,11 @@
             <video id="video" crossorigin="anonymous"></video>
 
             <!--Models-->
-            <a-asset-item id="cityHall" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
+            <!--<a-asset-item id="cityHall" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
             <a-asset-item id="caveHill" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
             <a-asset-item id="cranes" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
             <a-asset-item id="titanicBuilding" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
-            <a-asset-item id="belfastCastle" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
-
+            <a-asset-item id="belfastCastle" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>-->
             <!--Mixins for UI-->
             <a-mixin id="frame"
                      geometry="primitive: plane; width: 0.6; height: 0.8"
@@ -148,14 +127,16 @@
 
         <!--<a-entity id="sceneModel" gltf-model="#titanicBuilding" rotation="0 90 0" scale="0.05 0.05 0.05"></a-entity>-->
 
-        <a-entity gps-entity-place="latitude: 54.60836082389292; longitude: -5.91025433885457;">
-            <a-box color="red" position="0 0 0"></a-box>
+        <a-entity id="poiBox" gps-entity-place="latititude: 54.61; longitude: -5.95;">
+            <a-box color="red" scale="0.1 0.1 0.1"></a-box>
         </a-entity>
 
     </a-scene>
 
 </body>
 </html>
+
+
 <script>
     var myPosition = { x: 0, y: 1, z: -3 };
 
@@ -164,9 +145,40 @@
 
     //var myEntity = document.querySelector("#sceneModel");
     //myEntity.setAttribute("position", myPosition);
+    const scene = document.querySelector("a-scene");
+    console.log(scene);
+
+    if (navigator.geolocation) {
+        console.log("Geolocation is supported")
+
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                // Success: the user has allowed access to their location
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+                // Do something with the latitude and longitude
+                let gps = document.createAttribute('gps-entity-place');
+                gps.value = `latitude: ${position.coords.latitude - 0.1}; longitude: ${position.coords.longitude + 0.1}`;
+
+                let scene = document.querySelector("a-scene");
+
+                scene.setAttributeNode(gps);
+                console.log("Location: ", gps.value);
+                console.log("Scene: ", scene.getAttribute('gps-entity-place'));
+            },
+            function (error) {
+                // Error: the user has denied access to their location
+                console.error(error);
+            }
+        );
+    } else {
+        console.log(" Geolocation is not supported")
+    }
+
 
     pois.forEach(function (poi) {
         var poiEntity = document.createElement("a-entity");
+
         poiEntity.setAttribute("id", poi.name);
         poiEntity.setAttribute("look-at", "#mainCamera");
         poiEntity.setAttribute("position", poi.position);
@@ -180,7 +192,7 @@
             alert(poi.description);
         });
         console.log("Creating poi", poi.name);
-        var scene = document.querySelector("a-scene");
         scene.appendChild(poiEntity);
     });
+
 </script>
