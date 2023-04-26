@@ -29,6 +29,20 @@ AFRAME.registerComponent('info-panel', {
                 description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
                 url: 'cityhallVideo.mp4',
                 bgimg: 'img/cityhall360.jpg'
+            },
+            titanicButton: {
+                title: 'Titanic Exhibition',
+                imgEl: document.querySelector('#poiCHImage'),
+                description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
+                url: 'cityhallVideo.mp4',
+                bgimg: 'img/cityhall360.jpg'
+            },
+            castleButton: {
+                title: 'Belfast Castle',
+                imgEl: document.querySelector('#poiCHImage'),
+                description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
+                url: 'cityhallVideo.mp4',
+                bgimg: 'img/cityhall360.jpg'
             }
         };
 
@@ -44,7 +58,7 @@ AFRAME.registerComponent('info-panel', {
 
         //this.el.object3D.renderOrder = 9999999;
         //this.el.object3D.depthTest = false;
-        console.log("Component(s) registered", buttonEls.length, link);
+        //console.log("Component(s) registered", buttonEls.length, link);
     },
 
     onMenuButtonClick: function (evt) {
