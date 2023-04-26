@@ -10,12 +10,9 @@
     <script src="js\info-panel.js"></script>
     <script src="js\control.js"></script>
     <script src="js\poi.js"></script>
-    <script>
-      
-
-    </script>
 
     <title>WebAR-Example</title>
+
 </head>
 
 <body>
@@ -48,6 +45,7 @@
             <a-asset-item id="cranes" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
             <a-asset-item id="titanicBuilding" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
             <a-asset-item id="belfastCastle" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>-->
+           
             <!--Mixins for UI-->
             <a-mixin id="frame"
                      geometry="primitive: plane; width: 0.6; height: 0.8"
@@ -129,10 +127,13 @@
         </a-entity>
 
         <!--<a-entity id="sceneModel" gltf-model="#titanicBuilding" rotation="0 90 0" scale="0.05 0.05 0.05"></a-entity>-->
+        <a-entity id="poiBox" gps-entity-place="latitude: 15.59883806903877; longitude:  -6.9332469816665485;"  geometry="primitive: box; width: 100; height: 100" ></a-entity>
 
-        <a-entity id="poiBox">
-            <a-box color="red" scale="0.1 0.1 0.1"></a-box>
-        </a-entity>
+        <a-text value="This content will always face you."
+                look-at="[gps-camera]"
+                scale="5 5 5"
+                gps-entity-place="latitude: 54.59883806903877; longitude:  -5.9332469816665485;"
+                color="black"></a-text>
 
     </a-scene>
 
@@ -141,15 +142,12 @@
 
 <script>
     var myPosition = { x: 0, y: 1, z: -3 };
-    
+
     // Create an entity and set its position to the stored variable
     /*        var myEntity = document.createElement("a-entity");*/
-
     //var myEntity = document.querySelector("#sceneModel");
-    //myEntity.setAttribute("position", myPosition);
     var scene = document.querySelector("a-scene");
     //console.log(scene);
-    var poiBox = document.querySelector('#poiBox');
 
 
     if (navigator.geolocation) {
@@ -160,23 +158,19 @@
                 // Success: the user has allowed access to their location
                 const latitude = position.coords.latitude;
                 const longitude = position.coords.longitude;
+
                 // Do something with the latitude and longitude
                 //let gps = document.createAttribute('gps-entity-place');
-                //var gps= `latitude: ${position.coords.latitude - 0.1}; longitude: ${position.coords.longitude + 0.1}`;
-                var gps = `latitude: ${54.580}; longitude: ${-6.025}`;
+                ////gps.value = `latitude: ${position.coords.latitude - 0.1}; longitude: ${position.coords.longitude + 0.1}`;
+                //gps.value = `latitude: ${54.59883806903877}; longitude: ${-5.9332469816665485}`;
 
-                let scene = document.querySelector("a-scene");
+                //let scene = document.querySelector("a-scene");
 
                 //scene.setAttributeNode(gps);
 
-
-                //poiBox.setAttributeNode(gps);
-                //poiBox.setAttribute('gps-entity-place', gps);
-                poiBox.setAttribute('gps-entity-place', gps);
-
-                console.log("Location: ", gps);
-                var attrib = poiBox.getAttribute('gps-entity-place');
-                console.log(attrib);
+                //console.log("Location: ", gps.value);
+                //var attrib = poiBox.getAttribute('gps-entity-place');
+                //console.log(attrib);
 
                 //console.log("poiBox: ", poiBox.getAttribute('gps-entity-place'));
             },
@@ -189,15 +183,13 @@
         console.log(" Geolocation is not supported")
     }
 
-
-
-
     pois.forEach(function (poi) {
         var poiEntity = document.createElement("a-entity");
 
         poiEntity.setAttribute("id", poi.name);
         poiEntity.setAttribute("look-at", "#mainCamera");
         poiEntity.setAttribute("position", poi.position);
+
         poiEntity.setAttribute("text", {
             value: poi.name,
             align: "center",
