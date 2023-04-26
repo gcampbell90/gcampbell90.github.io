@@ -13,6 +13,20 @@
     <script>
         if (navigator.geolocation) {
             console.log(" Geolocation is supported")
+
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    // Success: the user has allowed access to their location
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    // Do something with the latitude and longitude
+                    console.log(latitude, " ", longitude);
+                },
+                function (error) {
+                    // Error: the user has denied access to their location
+                    console.error(error);
+                }
+            );
         } else {
             console.log(" Geolocation is not supported")
         }
@@ -23,7 +37,9 @@
 
 <body>
 
-    <a-scene vr-mode-ui="enabled: false">
+             
+    <a-scene>
+             <!--vr-mode-ui="enabled: false"-->
 
         <!--Camera with customized cursor-->
         <a-camera id="mainCamera">
@@ -71,8 +87,8 @@
 
         <!--Light-->
         <!--<a-light type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget" intensity="10">
-        <a-entity id="directionaltarget" position="0 0 -1"></a-entity>
-    </a-light>-->
+            <a-entity id="directionaltarget" position="0 0 -1"></a-entity>
+        </a-light>-->
         <!--Points of Interest Interactables-->
         <a-sphere id="cityhallButton" class="poiInteractable" color="blue" scale="0.2 0.2 0.2" position="-.1 1.5 -5.2"></a-sphere>
         <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="blue" position="-.1 .8 -5.2"></a-entity>
@@ -132,7 +148,7 @@
         </a-entity>
 
         <!--<a-entity id="sceneModel" gltf-model="#titanicBuilding" rotation="0 90 0" scale="0.05 0.05 0.05"></a-entity>-->
-        
+
         <a-entity gps-entity-place="latitude: 54.60836082389292; longitude: -5.91025433885457;">
             <a-box color="red" position="0 0 0"></a-box>
         </a-entity>
