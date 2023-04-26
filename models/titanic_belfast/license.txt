@@ -1,0 +1,11 @@
+Model Information:
+* title:	Titanic Belfast
+* source:	https://sketchfab.com/3d-models/titanic-belfast-8d8bbc975ce64c04abd54eb96c5de62a
+* author:	seanamurphy (https://sketchfab.com/seanamurphy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Titanic Belfast" (https://sketchfab.com/3d-models/titanic-belfast-8d8bbc975ce64c04abd54eb96c5de62a) by seanamurphy (https://sketchfab.com/seanamurphy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
