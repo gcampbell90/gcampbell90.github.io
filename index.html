@@ -7,9 +7,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@0.8.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="js\info-panel.js"></script>
-    <script src="js\control.js"></script>
     <script src="js\poi.js"></script>
+    <script src="js\info-panel.js"></script>
 
     <title>WebAR-Example</title>
 
@@ -19,7 +18,6 @@
 
 
     <a-scene>
-        <!--vr-mode-ui="enabled: false"-->
         <!--Camera with customized cursor-->
         <a-camera id="mainCamera" gps-camera rotation-reader>
             <a-cursor id="cursor"
@@ -30,22 +28,25 @@
 
         <a-assets>
             <!--Sky-->
-            <img id="sky" src="img\belfast360.jpg" crossorigin="anonymous">
+            <img id="sky" src="img/belfast360.jpg" crossorigin="anonymous">
 
-            <img id="cranes" src="img\s&g.png" crossorigin="anonymous" />
-            <img id="cavehill" src="img\Cave-Hill.jpg" crossorigin="anonymous" />
-            <img id="cityhall" src="img\cityhall.png" crossorigin="anonymous" />
+            <!--2d Images-->
+            <img id="CityHallImg" src="img\cityhall.png" crossorigin="anonymous" />
+            <img id="SamsonGoliathImg" src="img\s&g.png" crossorigin="anonymous" />
+            <img id="TitanicImg" src="img\cityhall.png" crossorigin="anonymous" />
+            <img id="CaveHillImg" src="img\Cave-Hill.jpg" crossorigin="anonymous" />
+            <img id="BelfastCastleImg" src="img\cityhall.png" crossorigin="anonymous" />
+
+            <!--Models-->
+            <a-asset-item id="cityHall" src='https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/8d72dc79b0c709818c6bf2a716bcbf5d8dce1542/models/TitanicBuilding.gltf' crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="caveHill" src='https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/8d72dc79b0c709818c6bf2a716bcbf5d8dce1542/models/TitanicBuilding.gltf' crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="cranesModel" src='https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/8d72dc79b0c709818c6bf2a716bcbf5d8dce1542/models/Samson%26Goliath.gltf' crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="titanicBuilding" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/8d72dc79b0c709818c6bf2a716bcbf5d8dce1542/models/TitanicBuilding.gltf" crossorigin="anonymous"></a-asset-item>
+            <a-asset-item id="belfastCastle" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/8d72dc79b0c709818c6bf2a716bcbf5d8dce1542/models/TitanicBuilding.gltf" crossorigin="anonymous"></a-asset-item>
 
             <!--Test Video-->
             <video id="video" crossorigin="anonymous"></video>
 
-            <!--Models-->
-            <!--<a-asset-item id="cityHall" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
-            <a-asset-item id="caveHill" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
-            <a-asset-item id="cranes" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
-            <a-asset-item id="titanicBuilding" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>
-            <a-asset-item id="belfastCastle" src="https://raw.githubusercontent.com/gcampbell90/gcampbell90.github.io/1cf45bcd1a8ae3da9852b0a08392861f121a2787/models/titanic.gltf" crossorigin="anonymous"></a-asset-item>-->
-           
             <!--Mixins for UI-->
             <a-mixin id="frame"
                      geometry="primitive: plane; width: 0.6; height: 0.8"
@@ -56,35 +57,28 @@
 
             <a-mixin id="poiImage"
                      geometry="primitive: plane; width: 1.5; height: 0.8"
-                     material="src: #city; shader: flat; transparent: true"
+                     material="src: #CityHallImg; shader: flat; transparent: false"
                      position="1 .4 0.1">
             </a-mixin>
+
         </a-assets>
 
         <!--Scene setup-->
         <a-sky src="#sky" rotation="0 -90 0"></a-sky>
 
         <!--Light-->
-        <!--<a-light type="directional" position="0 0 0" rotation="-90 0 0" target="#directionaltarget" intensity="10">
-            <a-entity id="directionaltarget" position="0 0 -1"></a-entity>
-        </a-light>-->
-        <!--Points of Interest Interactables-->
-        <a-sphere id="cityhallButton" class="poiInteractable" color="blue" scale="0.2 0.2 0.2" position="-.1 1.5 -5.2"></a-sphere>
-        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="blue" position="-.1 .8 -5.2"></a-entity>
-
-        <a-sphere id="cranesButton" class="poiInteractable" color="red" scale="0.2 0.2 0.2" position="-5 3 2"></a-sphere>
-        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="red" position="-5 2.3 2"></a-entity>
-
-        <a-sphere id="cavehillButton" class="poiInteractable" color="green" scale="0.2 0.2 0.2" position="1 3 5"></a-sphere>
-        <a-entity geometry="primitive: box; width: 0.1; height: 1; depth: 0.1" color="green" position="1 2.3 5"></a-entity>
-
+        <a-light type="directional" position="0 0 0" target="#directionaltarget" intensity="5">
+            <a-entity id="directionaltarget" position="-10 0 -5"></a-entity>
+        </a-light>
+        <a-light type="ambient" colour="#FFF">
+        </a-light>
 
         <a-entity info-panel
                   id="info-panel"
                   visible="false"
-                  position="0 0 -5"
+                  position="0 0 -4"
                   look-at="[camera]"
-                  geometry="primitive: plane; width: 4.5; height: 2"
+                  geometry="primitive: plane; width: 5; height: 2"
                   material="shader: flat; color: blue">
 
             <a-entity id="poiTitle"
@@ -103,17 +97,16 @@
                       position="-1.9 1 0"
                       geometry="primitive: sphere; width: 0.01; radius: 0.1"
                       material="shader: flat; color: red">
-                <a-text value="Play/Pause Video" color="#FFF" align="center" position="0 -.25 0" width="1.3"></a-text>
-
-                <a-entity id="urlText"
-                          text="shader: msdf; anchor: right; width: 1.3; font: https://cdn.aframe.io/examples/ui/Viga-Regular.json; color: white;
-                    value: Press to Play/Video">
-                </a-entity>
+                <a-text value="Play/Pause Video" color="#FFF" align="center" position="0 -.25 0" width="1.5"></a-text>
             </a-entity>
 
-            <a-entity id="poiCHImage" mixin="poiImage" material="src: #cityhall" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
-            <a-entity id="poiCranesImage" mixin="poiImage" material="src: #cranes" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
-            <a-entity id="poiCaveHillImage" mixin="poiImage" material="src: #cavehill" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+            <!--<a-entity id="poiImg" mixin="poiImage" visible="true" style="top:10px; left:20px; height:100px;"></a-entity>-->
+            <a-entity id="poiCityHallImg" mixin="poiImage" material="src: #CityHallImg" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+            <a-entity id="poiSamsonGoliathImg" mixin="poiImage" material="src: #SamsonGoliathImg" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+            <a-entity id="poiTitanicImg" mixin="poiImage" material="src: #TitanicImg" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+            <a-entity id="poiCaveHillImg" mixin="poiImage" material="src: #CaveHillImg" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+            <a-entity id="poiBelfastCastleImg" mixin="poiImage" material="src: #CaveHillImg" visible="false" style="top:10px; left:20px; height:100px;"></a-entity>
+
 
             <a-entity position="-.75 -.4 .2">
                 <a-box id="exploreBtn" width="1.2" height="0.15" depth="0.05" color="green">
@@ -121,86 +114,111 @@
                 </a-box>
             </a-entity>
 
-            <a-entity id="vidContainer" visible="true" position="1 -0.4 0.5">
+            <!--<a-entity id="vidContainer" visible="true" position="1 -0.4 0.5">
                 <a-video id="vid" src="#video" width="1.5" height=".75"></a-video>
-            </a-entity>
+            </a-entity>-->
         </a-entity>
 
-        <!--<a-entity id="sceneModel" gltf-model="#titanicBuilding" rotation="0 90 0" scale="0.05 0.05 0.05"></a-entity>-->
-        <a-entity id="poiBox" gps-entity-place="latitude: 15.59883806903877; longitude:  -6.9332469816665485;"  geometry="primitive: box; width: 100; height: 100" ></a-entity>
-
-        <a-text value="This content will always face you."
-                look-at="[gps-camera]"
-                scale="5 5 5"
-                gps-entity-place="latitude: 54.59883806903877; longitude:  -5.9332469816665485;"
-                color="black"></a-text>
-
     </a-scene>
-
 </body>
 </html>
 
 <script>
-    var myPosition = { x: 0, y: 1, z: -3 };
-
-    // Create an entity and set its position to the stored variable
-    /*        var myEntity = document.createElement("a-entity");*/
-    //var myEntity = document.querySelector("#sceneModel");
-    var scene = document.querySelector("a-scene");
-    //console.log(scene);
-
-
-    if (navigator.geolocation) {
-        console.log("Geolocation is supported")
-
-        navigator.geolocation.getCurrentPosition(
-            function (position) {
-                // Success: the user has allowed access to their location
-                const latitude = position.coords.latitude;
-                const longitude = position.coords.longitude;
-
-                // Do something with the latitude and longitude
-                //let gps = document.createAttribute('gps-entity-place');
-                ////gps.value = `latitude: ${position.coords.latitude - 0.1}; longitude: ${position.coords.longitude + 0.1}`;
-                //gps.value = `latitude: ${54.59883806903877}; longitude: ${-5.9332469816665485}`;
-
-                //let scene = document.querySelector("a-scene");
-
-                //scene.setAttributeNode(gps);
-
-                //console.log("Location: ", gps.value);
-                //var attrib = poiBox.getAttribute('gps-entity-place');
-                //console.log(attrib);
-
-                //console.log("poiBox: ", poiBox.getAttribute('gps-entity-place'));
-            },
-            function (error) {
-                // Error: the user has denied access to their location
-                console.error(error);
-            }
-        );
-    } else {
-        console.log(" Geolocation is not supported")
-    }
-
     pois.forEach(function (poi) {
+
+        //TextBoxS
         var poiEntity = document.createElement("a-entity");
 
         poiEntity.setAttribute("id", poi.name);
         poiEntity.setAttribute("look-at", "#mainCamera");
-        poiEntity.setAttribute("position", poi.position);
+        poiEntity.setAttribute("position",
+            {
+                x: 0,
+                y: 4.5,
+                z: -.5,
+            }
+        );
+
+        poiEntity.setAttribute("geometry", {
+            primitive: "plane",
+            height: "1",
+            width: "3.75"
+        });
+
+        poiEntity.setAttribute("material", {
+            shader: "flat",
+            color: "blue",
+            side: "double"
+        });
 
         poiEntity.setAttribute("text", {
             value: poi.name,
             align: "center",
-            width: "6",
-            color: "black"
+            width: "10",
+            color: "white"
         });
-        poiEntity.addEventListener("click", function () {
-            alert(poi.description);
-        });
-        console.log("Creating poi", poi.name);
-        scene.appendChild(poiEntity);
+
+
+        //POI model
+        var model = document.createElement("a-entity");
+
+        model.setAttribute("id", poi.id);
+        model.setAttribute("name", poi.name);
+        model.setAttribute("gltf-model", poi.model);
+        model.setAttribute("scale", poi.scale);
+        model.setAttribute("position", poi.position);
+        model.setAttribute("rotation", poi.rotation);
+        model.setAttribute("class", 'poiInteractable')
+
+        var scene = document.querySelector("a-scene");
+
+        //model.addEventListener('click', function () {
+        //    console.log(poi.id + " selected");
+        //});
+
+
+        model.appendChild(poiEntity);
+        scene.appendChild(model);
+
     });
+
+    //// Create an entity and set its position to the stored variable
+    ///*        var myEntity = document.createElement("a-entity");*/
+    ////var myEntity = document.querySelector("#sceneModel");
+    //var scene = document.querySelector("a-scene");
+    ////console.log(scene);
+
+    //if (navigator.geolocation) {
+    //    console.log("Geolocation is supported")
+
+    //    navigator.geolocation.getCurrentPosition(
+    //        function (position) {
+    //            // Success: the user has allowed access to their location
+    //            //const latitude = position.coords.latitude;
+    //            //const longitude = position.coords.longitude;
+
+    //            // Do something with the latitude and longitude
+    //            //let gps = document.createAttribute('gps-entity-place');
+    //            ////gps.value = `latitude: ${position.coords.latitude - 0.1}; longitude: ${position.coords.longitude + 0.1}`;
+    //            //gps.value = `latitude: ${54.59883806903877}; longitude: ${-5.9332469816665485}`;
+
+    //            //let scene = document.querySelector("a-scene");
+
+    //            //scene.setAttributeNode(gps);
+
+    //            //console.log("Location: ", gps.value);
+    //            //var attrib = poiBox.getAttribute('gps-entity-place');
+    //            //console.log(attrib);
+
+    //            //console.log("poiBox: ", poiBox.getAttribute('gps-entity-place'));
+    //        },
+    //        function (error) {
+    //            // Error: the user has denied access to their location
+    //            console.error(error);
+    //        }
+    //    );
+    //} else {
+    //    console.log(" Geolocation is not supported")
+    //}
 
 </script>

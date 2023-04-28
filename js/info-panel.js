@@ -1,45 +1,48 @@
 /* global AFRAME */
 AFRAME.registerComponent('info-panel', {
-    init: function () {
 
-        var buttonEls = document.querySelectorAll('.poiInteractable');
+    init: function () {
+        var scene = document.querySelector("a-scene");
+
+        var buttonEls = scene.querySelectorAll('.poiInteractable');
 
         this.poiImageEL;
-        this.poiTitleEl = document.querySelector('#poiTitle');
-        this.poiDescriptionEl = document.querySelector('#poiDescription');
+        this.poiTitleEl = scene.querySelector('#poiTitle');
+        this.poiDescriptionEl = scene.querySelector('#poiDescription');
 
         this.poiInfo = {
+            cityhallButton: {
+                title: 'Belfast City Hall',
+                imgEl: document.querySelector('#poiCityHallImg'),
+                description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
+                url: 'cityhallVideo.mp4',
+                bgimg: 'img/cityhall360.jpg'
+            },
             cavehillButton: {
                 title: 'Cave Hill',
-                imgEl: document.querySelector('#poiCaveHillImage'),
+                imgEl: document.querySelector('#poiCaveHillImg'),
                 description: "For generations, Cave Hill has been synonymous with Belfast, with its imposing outline visible throughout the city. The landmark, named for the five caves located on the side of the cliffs, contains a wealth of natural, archaeological and historical features, including Belfast Castle. Its most famous feature, known locally as Napoleon's Nose, is believed to have been the inspiration for Jonathan Swift's novel, Gulliver's Travels.",
                 url: 'cavehillVideo.mp4',
                 bgimg: 'img/cavehill360.jpg'
             },
             cranesButton: {
                 title: 'Samson and Goliath',
-                imgEl: document.querySelector('#poiCranesImage'),
+                imgEl: document.querySelector('#poiSamsonGoliathImg'),
                 description: "Samson and Goliath are the twin shipbuilding gantry cranes situated at Queen's Island, Belfast, Northern Ireland.The cranes, which were named after the Biblical figures Samson and Goliath, dominate the Belfast skyline and are landmark structures of the city.Comparative newcomers to the city, the cranes rapidly came to symbolise Belfast in a way that no building or monument had hitherto done",
                 url: 'sample.mp4',
                 bgimg: 'img/cranes360.jpg'
             },
-            cityhallButton: {
-                title: 'Belfast City Hall',
-                imgEl: document.querySelector('#poiCHImage'),
-                description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
-                url: 'cityhallVideo.mp4',
-                bgimg: 'img/cityhall360.jpg'
-            },
+
             titanicButton: {
                 title: 'Titanic Exhibition',
-                imgEl: document.querySelector('#poiCHImage'),
+                imgEl: document.querySelector('#poiTitanicImg'),
                 description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
                 url: 'cityhallVideo.mp4',
                 bgimg: 'img/cityhall360.jpg'
             },
-            castleButton: {
-                title: 'Belfast Castle',
-                imgEl: document.querySelector('#poiCHImage'),
+            stormontButton: {
+                title: 'Parliament Building',
+                imgEl: document.querySelector('#poiBelfastCastleImg'),
                 description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
                 url: 'cityhallVideo.mp4',
                 bgimg: 'img/cityhall360.jpg'
@@ -53,8 +56,8 @@ AFRAME.registerComponent('info-panel', {
             buttonEls[i].addEventListener('click', this.onMenuButtonClick);
         }
 
-        var link = document.querySelector("#url");
-        link.addEventListener('click', this.onVideoButtonClick);
+        //var link = document.querySelector("#url");
+        //link.addEventListener('click', this.onVideoButtonClick);
 
         //this.el.object3D.renderOrder = 9999999;
         //this.el.object3D.depthTest = false;
@@ -83,12 +86,13 @@ AFRAME.registerComponent('info-panel', {
         panel.setAttribute('visible', true);
         panel.setAttribute('position', initialPlanePosition);
 
-        var video = document.querySelector("#video");
-        video.setAttribute('src', poiInfo.url);
-        video.pause();
+        //var video = document.querySelector("#video");
+        //video.setAttribute('src', poiInfo.url);
+        //video.pause();
 
         var exploreButton = document.querySelector('#exploreBtn');
         //this.onExploreButtonClick = this.onExploreButtonClick.bind(this);
+
         exploreButton.addEventListener('click', function () {
             console.log(poiInfo.bgimg);
             document.querySelector('a-sky').setAttribute('src', poiInfo.bgimg);
@@ -102,9 +106,11 @@ AFRAME.registerComponent('info-panel', {
         var sphere = document.querySelector("#url");
 
         var material = sphere.getAttribute("material");
+
         // Update the sphere's material component
         var vidContainer = document.querySelector("#vidContainer");
         var isPlaying = vidContainer.isPlaying;
+
         console.log(isPlaying);
         if (isPlaying == false) {
             vidContainer.play();
