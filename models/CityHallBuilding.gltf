@@ -15,7 +15,7 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"Stormont"
+			"name":"Stormont.001"
 		}
 	],
 	"materials":[
@@ -34,7 +34,7 @@
 	],
 	"meshes":[
 		{
-			"name":"Sketchup.007",
+			"name":"Sketchup.001",
 			"primitives":[
 				{
 					"attributes":{
