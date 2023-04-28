@@ -8,7 +8,8 @@ const pois = [
         bgimg: 'img/cityhall360.jpg',
         model: '#titanicBuilding',
         scale: { x: 1, y: 1, z: 1 },
-        position: { x: -.1, y: -1.5, z: -5 },
+        //position: { x: -.1, y: -1.5, z: -5 },
+        position: { x: -.1, y: -0.5, z: -5 },
         rotation: { x: 0, y: 0, z: 0 }
     },
     {
@@ -20,7 +21,8 @@ const pois = [
         bgimg: 'img/cranes360.jpg',
         model: '#cranesModel',
         scale: { x: 1, y: 1, z: 1 },
-        position: { x: -10, y: 1.5, z: 2.5 },
+        //position: { x: -10, y: 1.5, z: 2.5 },
+        position: { x: -10, y: 0.5, z: 2.5 },
         rotation: { x: 0, y: 135, z: 0 }
     },
     {
@@ -29,6 +31,7 @@ const pois = [
         description: "This is the description for POI 3",
         model: '#titanicBuilding',
         scale: { x: 1, y: 1, z: 1 },
+        //position: { x: -8, y: 0, z: 5.5 },
         position: { x: -8, y: 0, z: 5.5 },
         rotation: { x: 0, y: 110, z: 0 }
     },
@@ -41,7 +44,8 @@ const pois = [
         bgimg: 'img/cavehill360.jpg',
         model: '#titanicBuilding',
         scale: { x: 1, y: 1, z: 1 },
-        position: { x: 2, y: 1.5, z: 10 },
+        //position: { x: 2, y: 1.5, z: 10 },
+        position: { x: 2, y: 0.5, z: 10 },
         rotation: { x: 0, y: 0, z: 0 }
     },
     {
@@ -50,8 +54,8 @@ const pois = [
         description: "This is the description for POI 3",
         model: '#titanicBuilding',
         scale: { x: 1, y: 1, z: 1 },
-        position: { x: -15, y: 1, z: 0 },
-
+        //position: { x: -15, y: 1, z: 0 },
+        position: { x: -15, y: 0, z: -2 },
         rotation: { x: 0, y: 110, z: 0 }
     },
 ];

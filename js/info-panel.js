@@ -38,14 +38,14 @@ AFRAME.registerComponent('info-panel', {
                 imgEl: document.querySelector('#poiTitanicImg'),
                 description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
                 url: 'cityhallVideo.mp4',
-                bgimg: 'img/cityhall360.jpg'
+                bgimg: 'img/titanic360.jpg'
             },
             stormontButton: {
                 title: 'Parliament Building',
                 imgEl: document.querySelector('#poiBelfastCastleImg'),
                 description: "Belfast City Hall was commissioned to replace the Old Town Hall in Victoria Street.[3] The catalyst for change came in 1888 when Belfast was awarded city status by Queen Victoria. This was in recognition of Belfast's rapid expansion and thriving linen, rope-making, shipbuilding and engineering industries. During this period Belfast briefly overtook Dublin as the most populous city in Ireland.",
                 url: 'cityhallVideo.mp4',
-                bgimg: 'img/cityhall360.jpg'
+                bgimg: 'img/stormont360.jpg'
             }
         };
 
@@ -54,14 +54,17 @@ AFRAME.registerComponent('info-panel', {
 
         for (var i = 0; i < buttonEls.length; ++i) {
             buttonEls[i].addEventListener('click', this.onMenuButtonClick);
+            //console.log("Component(s) registered", buttonEls.id);
         }
+
+        var sphere = scene.querySelector('#sphere');
 
         //var link = document.querySelector("#url");
         //link.addEventListener('click', this.onVideoButtonClick);
 
         //this.el.object3D.renderOrder = 9999999;
         //this.el.object3D.depthTest = false;
-        //console.log("Component(s) registered", buttonEls.length, link);
+        console.log("Component(s) registered", buttonEls.length);
     },
 
     onMenuButtonClick: function (evt) {
