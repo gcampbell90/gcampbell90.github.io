@@ -1,8 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\images"
+    "\\assets",
+    "\\assets\\css",
+    "\\images",
+    "\\images\\portfolio",
+    "\\video"
   ],
-  "SelectedNode": "\\projectgallery.html",
+  "SelectedNode": "\\video",
   "PreviewInSolutionExplorer": false
 }
