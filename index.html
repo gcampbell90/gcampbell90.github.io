@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/lightbox.css" />
 </head>
 <body class="is-preload">
 
@@ -77,7 +78,6 @@
                     </video>
                 </div>
             </section>-->
-
             <!-- Three -->
             <section id="three">
                 <div class="container">
@@ -180,35 +180,233 @@
                     </div>
                 </div>
             </section>
+
             <section id="four">
                 <div class="container">
-                    <h4>WIPs, Models Etc.</h4>
-                    <!--<span class="image fit"><img src="images/banner.jpg" alt="" /></span>-->
-                    <div class="box alt">
-                        <div class="row gtr-50 gtr-uniform">
-                            <div class="col-4"><a href="images/WIPS/Wolves1.png" /><span class="image fit"><img src="images/WIPS/Wolves1.png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/Wolves2.png" /><span class="image fit"><img src="images/WIPS/Wolves2.png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/Wolves3.png" /><span class="image fit"><img src="images/WIPS/Wolves3.png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (10).png" /><span class="image fit"><img src="images/WIPS/WIP (10).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (11).png" /><span class="image fit"><img src="images/WIPS/WIP (11).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (12).png" /><span class="image fit"><img src="images/WIPS/WIP (12).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (13).png" /><span class="image fit"><img src="images/WIPS/WIP (13).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (14).png" /><span class="image fit"><img src="images/WIPS/WIP (14).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (15).png" /><span class="image fit"><img src="images/WIPS/WIP (15).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (9).png" /><span class="image fit"><img src="images/WIPS/WIP (9).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (1).png" /><span class="image fit"><img src="images/WIPS/WIP (1).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (2).png" /><span class="image fit"><img src="images/WIPS/WIP (2).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (4).png" /><span class="image fit"><img src="images/WIPS/WIP (4).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (5).png" /><span class="image fit"><img src="images/WIPS/WIP (5).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (6).png" /><span class="image fit"><img src="images/WIPS/WIP (6).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (7).png" /><span class="image fit"><img src="images/WIPS/WIP (7).png" alt="" /></span></div>
-                            <div class="col-4"><a href="images/WIPS/WIP (8).png" /><span class="image fit"><img src="images/WIPS/WIP (8).png" alt="" /></span></div>
+                    <h3>WIPS, Freelance Work, Models etc.</h3>
+                    <p>Selection of current WIP's and other content created using Unity3D, Blender, Substance Painter, Adobe CC.</p>
+                    <div class="row">
+                        <div class="column">
+                            <img src="images/WIPS/Wolves1.png" style="width:100%; height: 150px;" onclick="openModal();currentSlide(1)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/Wolves2.png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(2)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/Wolves3.png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(3)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (1).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(4)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (2).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(5)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (4).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(6)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (5).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(7)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (6).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(8)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (7).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(9)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (8).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(10)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (9).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(11)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (10).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(12)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (11).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(13)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (12).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(14)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (13).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(15)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (14).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(16)" class="hover-shadow cursor">
+                        </div>
+                        <div class="column">
+                            <img src="images/WIPS/WIP (15).png" style="width: 100%; height: 150px;" onclick="openModal();currentSlide(17)" class="hover-shadow cursor">
+                        </div>
+
+                    </div>
+
+                    <div id="myModal" class="modal">
+                        <span class="close cursor" onclick="closeModal()">&times;</span>
+                        <div class="modal-content">
+
+                            <div class="mySlides">
+                                <div class="numbertext">1 / 17</div>
+                                <img src="images/WIPS/Wolves1.png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">2 / 17</div>
+
+                                <img src="images/WIPS/Wolves2.png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">3 / 17</div>
+
+                                <img src="images/WIPS/Wolves3.png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">4 / 17</div>
+
+                                <img src="images/WIPS/WIP (1).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">5 / 17</div>
+                                <img src="images/WIPS/WIP (2).png" style="width:100%">
+                            </div>
+                            <div class="mySlides">
+                                <div class="numbertext">6 / 17</div>
+
+                                <img src="images/WIPS/WIP (4).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">7 / 17</div>
+
+                                <img src="images/WIPS/WIP (5).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">8 / 17</div>
+
+                                <img src="images/WIPS/WIP (6).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">9 / 17</div>
+
+                                <img src="images/WIPS/WIP (7).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">10 / 17</div>
+
+                                <img src="images/WIPS/WIP (8).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">11 / 17</div>
+
+                                <img src="images/WIPS/WIP (9).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">12 / 17</div>
+
+                                <img src="images/WIPS/WIP (10).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">13 / 17</div>
+
+                                <img src="images/WIPS/WIP (11).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">14 / 17</div>
+
+                                <img src="images/WIPS/WIP (12).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">15 / 17</div>
+
+                                <img src="images/WIPS/WIP (13).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">16 / 17</div>
+
+                                <img src="images/WIPS/WIP (14).png" style="width:100%">
+                            </div>
+
+                            <div class="mySlides">
+                                <div class="numbertext">17 / 17</div>
+
+                                <img src="images/WIPS/WIP (15).png" style="width:100%">
+                            </div>
+
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                            <div class="caption-container">
+                                <p id="caption"></p>
+                            </div>
+
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/Wolves1.png" style="width:100%" onclick="currentSlide(1)" alt="Combat/Enemy Wave Mechanics">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/Wolves2.png" style="width:100%" onclick="currentSlide(2)" alt="Combat/Enemy Wave Mechanics">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/Wolves3.png" style="width:100%" onclick="currentSlide(3)" alt="Combat/Enemy Wave Mechanics">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (1).png" style="width:100%" onclick="currentSlide(4)" alt="Environment Design">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (2).png" style="width:100%" onclick="currentSlide(5)" alt="Environment Design vs Reference Image">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (4).png" style="width:100%" onclick="currentSlide(6)" alt="Environment Design vs Reference Image">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (5).png" style="width:100%" onclick="currentSlide(7)" alt="UI Work Snapshot">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (6).png" style="width:100%" onclick="currentSlide(8)" alt="5555 Model(Freelance)">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (7).png" style="width:100%" onclick="currentSlide(9)" alt="Anduril Model(Personal Piece)">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (8).png" style="width:100%" onclick="currentSlide(10)" alt="Hidden Library(Personal Piece)">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (9).png" style="width:100%" onclick="currentSlide(11)" alt="EscapeTheNight Car Model (Personal Piece)">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (10).png" style="width:100%" onclick="currentSlide(12)" alt="SNES Controller (Personal Piece)">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (11).png" style="width:100%" onclick="currentSlide(13)" alt="Unity Tools/Shader Work - Solar System Generator">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (12).png" style="width:100%" onclick="currentSlide(14)" alt="Unity Tools/Shader Work - Solar System/Planet Hologram">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (13).png" style="width:100%" onclick="currentSlide(15)" alt="Unity Tools/Utility Work - Network Graph Visualsation">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (14).png" style="width:100%" onclick="currentSlide(16)" alt="Unity Tools/Utility Work - Various Visualisations">
+                            </div>
+                            <div class="column">
+                                <img class="demo cursor" src="images/WIPS/WIP (15).png" style="width:100%" onclick="currentSlide(17)" alt="Northern Lights - Various Visualisations">
+                            </div>
+
                         </div>
                     </div>
                 </div>
+            </section>
         </div>
-        </section>
-    </div>
     </div>
 
     <!-- Scripts -->
@@ -219,6 +417,46 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+
+    <script>
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("demo");
+            var captionText = document.getElementById("caption");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+            captionText.innerHTML = dots[slideIndex - 1].alt;
+        }
+    </script>
 
 </body>
 </html>
